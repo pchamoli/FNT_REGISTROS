@@ -1,0 +1,51 @@
+﻿@model MERCADOS.Web.Models.PresentacionViewModel
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la presentación</h2>
+
+<div>
+    <h4>Muestra el registro detallado de la presentación</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_presentacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_presentacion)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_presentacion }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

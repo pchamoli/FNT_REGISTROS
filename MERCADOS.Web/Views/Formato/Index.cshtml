@@ -1,0 +1,80 @@
+﻿@model PagedList.IPagedList<MERCADOS.Web.Models.FormatoViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de formatos</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Nuevo formato", "Create")
+</p>
+<br />
+@using (Html.BeginForm("Index", "Formato", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+        @Html.ActionLink("Limpiar", "Index", "Formato")
+    </p>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Tipo de formato", "Index", new { sortOrder = ViewBag.TipoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Nombre de formato", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Ultimo usuario", "Index", new { sortOrder = ViewBag.UsuarioSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Ultima fecha", "Index", new { sortOrder = ViewBag.FechaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Estado", "Index", new { sortOrder = ViewBag.EstadoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_formato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_formato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ult_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ult_fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_formato }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_formato }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_formato })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<br />
+<div>
+    @Html.ActionLink("Regresar", "Index", "Home")
+</div>

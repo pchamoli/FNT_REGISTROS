@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A34E29F0-2FCB-4EA8-874F-FBFAAEDF5F1F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MERCADOS.Request</RootNamespace>
+    <AssemblyName>MERCADOS.Request</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CampoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EspecieRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormatoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstFmtMayoristaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstFmtMinoristaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstFormatoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LugarRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaestroCampoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaestroFormatoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaestroSeccionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MercadoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PresentacionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestObjects.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeccionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnidadRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RequestObjects.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RequestObjects.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

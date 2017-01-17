@@ -1,0 +1,1435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_REGISTROSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DAT_CAMPO">
+          <Key>
+            <PropertyRef Name="id_campo" />
+          </Key>
+          <Property Name="id_campo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_seccion" Type="int" Nullable="false" />
+          <Property Name="nom_campo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="desc_campo" Type="varchar" MaxLength="500" />
+          <Property Name="estado_campo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="oblig_campo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_ESPECIE">
+          <Key>
+            <PropertyRef Name="id_especie" />
+          </Key>
+          <Property Name="id_especie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_especie" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado_especie" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_ESTADO">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_estado" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+          </Key>
+          <Property Name="id_formato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_formato" Type="int" Nullable="false" />
+          <Property Name="nom_formato" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FMT_MAYORISTA">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="int" Nullable="false" />
+          <Property Name="id_instancia" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="volumen" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_min" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_max" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_especie" Type="int" Nullable="false" />
+          <Property Name="id_unidad" Type="int" Nullable="false" />
+          <Property Name="id_lugar" Type="int" Nullable="false" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="id_presentacion" Type="int" Nullable="false" />
+          <Property Name="peso_unidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tamanio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FMT_MINORISTA">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="int" Nullable="false" />
+          <Property Name="id_instancia" Type="int" Nullable="false" />
+          <Property Name="id_especie" Type="int" />
+          <Property Name="puesto" Type="int" />
+          <Property Name="id_unidad" Type="int" />
+          <Property Name="precio_min" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="precio_max" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="id_lugar" Type="int" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="tamanio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="id_estado" Type="int" />
+          <Property Name="id_presentacion" Type="int" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="int" Nullable="false" />
+          <Property Name="id_mercado" Type="int" Nullable="false" />
+          <Property Name="id_instancia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_instancia" Type="varchar" MaxLength="20" />
+          <Property Name="estado_instancia" Type="char" MaxLength="1" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_LUGAR">
+          <Key>
+            <PropertyRef Name="id_lugar" />
+          </Key>
+          <Property Name="id_lugar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_lugar" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado_lugar" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_MERCADO">
+          <Key>
+            <PropertyRef Name="id_mercado" />
+          </Key>
+          <Property Name="id_mercado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_mercado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="desc_mercado" Type="varchar" MaxLength="200" />
+          <Property Name="distrito_mercado" Type="varchar" MaxLength="20" />
+          <Property Name="estado_mercado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_PRESENTACION">
+          <Key>
+            <PropertyRef Name="id_presentacion" />
+          </Key>
+          <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_presentacion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_SECCION">
+          <Key>
+            <PropertyRef Name="id_seccion" />
+          </Key>
+          <Property Name="id_seccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_formato" Type="int" Nullable="false" />
+          <Property Name="nom_seccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="orden_seccion" Type="int" Nullable="false" />
+          <Property Name="estado_seccion" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_UNIDAD">
+          <Key>
+            <PropertyRef Name="id_unidad" />
+          </Key>
+          <Property Name="id_unidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_unidad" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="estado_unidad" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_REGISTROS.dbo.VW_MAESTRO_CAMPO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_MAESTRO_CAMPO">
+          <Key>
+            <PropertyRef Name="id_campo" />
+            <PropertyRef Name="nom_seccion" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="nom_campo" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="obligatorio" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+          </Key>
+          <Property Name="id_campo" Type="int" Nullable="false" />
+          <Property Name="nom_seccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nom_formato" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nom_campo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="desc_campo" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="obligatorio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="ult_usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ult_fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_REGISTROS.dbo.VW_MAESTRO_FORMATO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_MAESTRO_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="tipo_formato" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="id_formato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_formato" Type="int" Nullable="false" />
+          <Property Name="nom_formato" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ult_usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ult_fecha" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_REGISTROS.dbo.VW_MAESTRO_SECCION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_MAESTRO_SECCION">
+          <Key>
+            <PropertyRef Name="id_seccion" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="nom_seccion" />
+            <PropertyRef Name="orden" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+          </Key>
+          <Property Name="id_seccion" Type="int" Nullable="false" />
+          <Property Name="nom_formato" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nom_seccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ult_usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ult_fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="R_1">
+          <End Role="DAT_FORMATO" Type="Self.DAT_FORMATO" Multiplicity="1" />
+          <End Role="DAT_SECCION" Type="Self.DAT_SECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="DAT_SECCION">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_10">
+          <End Role="DAT_ESPECIE" Type="Self.DAT_ESPECIE" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESPECIE">
+              <PropertyRef Name="id_especie" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_especie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_11">
+          <End Role="DAT_UNIDAD" Type="Self.DAT_UNIDAD" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_UNIDAD">
+              <PropertyRef Name="id_unidad" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_12">
+          <End Role="DAT_LUGAR" Type="Self.DAT_LUGAR" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_LUGAR">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_13">
+          <End Role="DAT_ESPECIE" Type="Self.DAT_ESPECIE" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESPECIE">
+              <PropertyRef Name="id_especie" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_especie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_14">
+          <End Role="DAT_UNIDAD" Type="Self.DAT_UNIDAD" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_UNIDAD">
+              <PropertyRef Name="id_unidad" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_15">
+          <End Role="DAT_LUGAR" Type="Self.DAT_LUGAR" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_LUGAR">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_16">
+          <End Role="DAT_ESTADO" Type="Self.DAT_ESTADO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESTADO">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_17">
+          <End Role="DAT_PRESENTACION" Type="Self.DAT_PRESENTACION" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PRESENTACION">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_18">
+          <End Role="DAT_ESTADO" Type="Self.DAT_ESTADO" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESTADO">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_19">
+          <End Role="DAT_PRESENTACION" Type="Self.DAT_PRESENTACION" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PRESENTACION">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_2">
+          <End Role="DAT_SECCION" Type="Self.DAT_SECCION" Multiplicity="1" />
+          <End Role="DAT_CAMPO" Type="Self.DAT_CAMPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_SECCION">
+              <PropertyRef Name="id_seccion" />
+            </Principal>
+            <Dependent Role="DAT_CAMPO">
+              <PropertyRef Name="id_seccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_3">
+          <End Role="DAT_FORMATO" Type="Self.DAT_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="DAT_MERCADO" Type="Self.DAT_MERCADO" Multiplicity="1" />
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_MERCADO">
+              <PropertyRef Name="id_mercado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_mercado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_5">
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_6">
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="p_DAT_CAMPO_Procesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_operacion" Type="int" Mode="In" />
+          <Parameter Name="id_campo" Type="int" Mode="In" />
+          <Parameter Name="id_seccion" Type="int" Mode="In" />
+          <Parameter Name="nom_campo" Type="varchar" Mode="In" />
+          <Parameter Name="desc_campo" Type="varchar" Mode="In" />
+          <Parameter Name="estado_campo" Type="char" Mode="In" />
+          <Parameter Name="oblig_campo" Type="char" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cod_error" Type="int" Mode="InOut" />
+          <Parameter Name="msg_error" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="p_DAT_FORMATO_Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_formato" Type="int" Mode="In" />
+          <Parameter Name="cod_error" Type="int" Mode="InOut" />
+          <Parameter Name="msg_error" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="p_DAT_FORMATO_Procesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_operacion" Type="int" Mode="In" />
+          <Parameter Name="id_formato" Type="int" Mode="In" />
+          <Parameter Name="tipo_formato" Type="int" Mode="In" />
+          <Parameter Name="nom_formato" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cod_error" Type="int" Mode="InOut" />
+          <Parameter Name="msg_error" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="p_DAT_SECCION_Procesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_operacion" Type="int" Mode="In" />
+          <Parameter Name="id_seccion" Type="int" Mode="In" />
+          <Parameter Name="id_formato" Type="int" Mode="In" />
+          <Parameter Name="nom_seccion" Type="varchar" Mode="In" />
+          <Parameter Name="orden_seccion" Type="int" Mode="In" />
+          <Parameter Name="estado_seccion" Type="char" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cod_error" Type="int" Mode="InOut" />
+          <Parameter Name="msg_error" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="DB_REGISTROSModelStoreContainer">
+          <EntitySet Name="DAT_CAMPO" EntityType="Self.DAT_CAMPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ESPECIE" EntityType="Self.DAT_ESPECIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ESTADO" EntityType="Self.DAT_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_FORMATO" EntityType="Self.DAT_FORMATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_INST_FMT_MAYORISTA" EntityType="Self.DAT_INST_FMT_MAYORISTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_INST_FMT_MINORISTA" EntityType="Self.DAT_INST_FMT_MINORISTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_INST_FORMATO" EntityType="Self.DAT_INST_FORMATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_LUGAR" EntityType="Self.DAT_LUGAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_MERCADO" EntityType="Self.DAT_MERCADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_PRESENTACION" EntityType="Self.DAT_PRESENTACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_SECCION" EntityType="Self.DAT_SECCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_UNIDAD" EntityType="Self.DAT_UNIDAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_MAESTRO_CAMPO" EntityType="Self.VW_MAESTRO_CAMPO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MAESTRO_CAMPO].[id_campo] AS [id_campo], 
+    [VW_MAESTRO_CAMPO].[nom_seccion] AS [nom_seccion], 
+    [VW_MAESTRO_CAMPO].[nom_formato] AS [nom_formato], 
+    [VW_MAESTRO_CAMPO].[nom_campo] AS [nom_campo], 
+    [VW_MAESTRO_CAMPO].[desc_campo] AS [desc_campo], 
+    [VW_MAESTRO_CAMPO].[estado] AS [estado], 
+    [VW_MAESTRO_CAMPO].[obligatorio] AS [obligatorio], 
+    [VW_MAESTRO_CAMPO].[ult_usuario] AS [ult_usuario], 
+    [VW_MAESTRO_CAMPO].[ult_fecha] AS [ult_fecha]
+    FROM [dbo].[VW_MAESTRO_CAMPO] AS [VW_MAESTRO_CAMPO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_MAESTRO_FORMATO" EntityType="Self.VW_MAESTRO_FORMATO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MAESTRO_FORMATO].[id_formato] AS [id_formato], 
+    [VW_MAESTRO_FORMATO].[tipo_formato] AS [tipo_formato], 
+    [VW_MAESTRO_FORMATO].[nom_formato] AS [nom_formato], 
+    [VW_MAESTRO_FORMATO].[ult_usuario] AS [ult_usuario], 
+    [VW_MAESTRO_FORMATO].[ult_fecha] AS [ult_fecha], 
+    [VW_MAESTRO_FORMATO].[estado] AS [estado]
+    FROM [dbo].[VW_MAESTRO_FORMATO] AS [VW_MAESTRO_FORMATO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_MAESTRO_SECCION" EntityType="Self.VW_MAESTRO_SECCION" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MAESTRO_SECCION].[id_seccion] AS [id_seccion], 
+    [VW_MAESTRO_SECCION].[nom_formato] AS [nom_formato], 
+    [VW_MAESTRO_SECCION].[nom_seccion] AS [nom_seccion], 
+    [VW_MAESTRO_SECCION].[orden] AS [orden], 
+    [VW_MAESTRO_SECCION].[estado] AS [estado], 
+    [VW_MAESTRO_SECCION].[ult_usuario] AS [ult_usuario], 
+    [VW_MAESTRO_SECCION].[ult_fecha] AS [ult_fecha]
+    FROM [dbo].[VW_MAESTRO_SECCION] AS [VW_MAESTRO_SECCION]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="R_1" Association="Self.R_1">
+            <End Role="DAT_FORMATO" EntitySet="DAT_FORMATO" />
+            <End Role="DAT_SECCION" EntitySet="DAT_SECCION" />
+          </AssociationSet>
+          <AssociationSet Name="R_10" Association="Self.R_10">
+            <End Role="DAT_ESPECIE" EntitySet="DAT_ESPECIE" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_11" Association="Self.R_11">
+            <End Role="DAT_UNIDAD" EntitySet="DAT_UNIDAD" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_12" Association="Self.R_12">
+            <End Role="DAT_LUGAR" EntitySet="DAT_LUGAR" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_13" Association="Self.R_13">
+            <End Role="DAT_ESPECIE" EntitySet="DAT_ESPECIE" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_14" Association="Self.R_14">
+            <End Role="DAT_UNIDAD" EntitySet="DAT_UNIDAD" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_15" Association="Self.R_15">
+            <End Role="DAT_LUGAR" EntitySet="DAT_LUGAR" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_16" Association="Self.R_16">
+            <End Role="DAT_ESTADO" EntitySet="DAT_ESTADO" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_17" Association="Self.R_17">
+            <End Role="DAT_PRESENTACION" EntitySet="DAT_PRESENTACION" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_18" Association="Self.R_18">
+            <End Role="DAT_ESTADO" EntitySet="DAT_ESTADO" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_19" Association="Self.R_19">
+            <End Role="DAT_PRESENTACION" EntitySet="DAT_PRESENTACION" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_2" Association="Self.R_2">
+            <End Role="DAT_SECCION" EntitySet="DAT_SECCION" />
+            <End Role="DAT_CAMPO" EntitySet="DAT_CAMPO" />
+          </AssociationSet>
+          <AssociationSet Name="R_3" Association="Self.R_3">
+            <End Role="DAT_FORMATO" EntitySet="DAT_FORMATO" />
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="DAT_MERCADO" EntitySet="DAT_MERCADO" />
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+          </AssociationSet>
+          <AssociationSet Name="R_5" Association="Self.R_5">
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_6" Association="Self.R_6">
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_REGISTROSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DAT_CAMPO">
+          <Key>
+            <PropertyRef Name="id_campo" />
+          </Key>
+          <Property Name="id_campo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_seccion" Type="Int32" Nullable="false" />
+          <Property Name="nom_campo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="desc_campo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estado_campo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="oblig_campo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_SECCION" Relationship="Self.R_2" FromRole="DAT_CAMPO" ToRole="DAT_SECCION" />
+        </EntityType>
+        <EntityType Name="DAT_ESPECIE">
+          <Key>
+            <PropertyRef Name="id_especie" />
+          </Key>
+          <Property Name="id_especie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_especie" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado_especie" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_10" FromRole="DAT_ESPECIE" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_13" FromRole="DAT_ESPECIE" ToRole="DAT_INST_FMT_MINORISTA" />
+        </EntityType>
+        <EntityType Name="DAT_ESTADO">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_estado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_16" FromRole="DAT_ESTADO" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_18" FromRole="DAT_ESTADO" ToRole="DAT_INST_FMT_MINORISTA" />
+        </EntityType>
+        <EntityType Name="DAT_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+          </Key>
+          <Property Name="id_formato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_formato" Type="Int32" Nullable="false" />
+          <Property Name="nom_formato" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="DAT_SECCION" Relationship="Self.R_1" FromRole="DAT_FORMATO" ToRole="DAT_SECCION" />
+          <NavigationProperty Name="DAT_INST_FORMATO" Relationship="Self.R_3" FromRole="DAT_FORMATO" ToRole="DAT_INST_FORMATO" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FMT_MAYORISTA">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="Int32" Nullable="false" />
+          <Property Name="id_instancia" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="volumen" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_min" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_max" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_especie" Type="Int32" Nullable="false" />
+          <Property Name="id_unidad" Type="Int32" Nullable="false" />
+          <Property Name="id_lugar" Type="Int32" Nullable="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="id_presentacion" Type="Int32" Nullable="false" />
+          <Property Name="peso_unidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tamanio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DAT_ESPECIE" Relationship="Self.R_10" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_ESPECIE" />
+          <NavigationProperty Name="DAT_ESTADO" Relationship="Self.R_16" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_ESTADO" />
+          <NavigationProperty Name="DAT_UNIDAD" Relationship="Self.R_11" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_UNIDAD" />
+          <NavigationProperty Name="DAT_LUGAR" Relationship="Self.R_12" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_LUGAR" />
+          <NavigationProperty Name="DAT_PRESENTACION" Relationship="Self.R_17" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_PRESENTACION" />
+          <NavigationProperty Name="DAT_INST_FORMATO" Relationship="Self.R_5" FromRole="DAT_INST_FMT_MAYORISTA" ToRole="DAT_INST_FORMATO" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FMT_MINORISTA">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="Int32" Nullable="false" />
+          <Property Name="id_instancia" Type="Int32" Nullable="false" />
+          <Property Name="id_especie" Type="Int32" />
+          <Property Name="puesto" Type="Int32" />
+          <Property Name="id_unidad" Type="Int32" />
+          <Property Name="precio_min" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="precio_max" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_lugar" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="tamanio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_estado" Type="Int32" />
+          <Property Name="id_presentacion" Type="Int32" />
+          <NavigationProperty Name="DAT_ESPECIE" Relationship="Self.R_13" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_ESPECIE" />
+          <NavigationProperty Name="DAT_ESTADO" Relationship="Self.R_18" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_ESTADO" />
+          <NavigationProperty Name="DAT_UNIDAD" Relationship="Self.R_14" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_UNIDAD" />
+          <NavigationProperty Name="DAT_LUGAR" Relationship="Self.R_15" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_LUGAR" />
+          <NavigationProperty Name="DAT_PRESENTACION" Relationship="Self.R_19" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_PRESENTACION" />
+          <NavigationProperty Name="DAT_INST_FORMATO" Relationship="Self.R_6" FromRole="DAT_INST_FMT_MINORISTA" ToRole="DAT_INST_FORMATO" />
+        </EntityType>
+        <EntityType Name="DAT_INST_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="id_instancia" />
+          </Key>
+          <Property Name="id_formato" Type="Int32" Nullable="false" />
+          <Property Name="id_mercado" Type="Int32" Nullable="false" />
+          <Property Name="id_instancia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_instancia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado_instancia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_FORMATO" Relationship="Self.R_3" FromRole="DAT_INST_FORMATO" ToRole="DAT_FORMATO" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_5" FromRole="DAT_INST_FORMATO" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_6" FromRole="DAT_INST_FORMATO" ToRole="DAT_INST_FMT_MINORISTA" />
+          <NavigationProperty Name="DAT_MERCADO" Relationship="Self.R_4" FromRole="DAT_INST_FORMATO" ToRole="DAT_MERCADO" />
+        </EntityType>
+        <EntityType Name="DAT_LUGAR">
+          <Key>
+            <PropertyRef Name="id_lugar" />
+          </Key>
+          <Property Name="id_lugar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_lugar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado_lugar" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_12" FromRole="DAT_LUGAR" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_15" FromRole="DAT_LUGAR" ToRole="DAT_INST_FMT_MINORISTA" />
+        </EntityType>
+        <EntityType Name="DAT_MERCADO">
+          <Key>
+            <PropertyRef Name="id_mercado" />
+          </Key>
+          <Property Name="id_mercado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_mercado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="desc_mercado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="distrito_mercado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="estado_mercado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FORMATO" Relationship="Self.R_4" FromRole="DAT_MERCADO" ToRole="DAT_INST_FORMATO" />
+        </EntityType>
+        <EntityType Name="DAT_PRESENTACION">
+          <Key>
+            <PropertyRef Name="id_presentacion" />
+          </Key>
+          <Property Name="id_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_presentacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_17" FromRole="DAT_PRESENTACION" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_19" FromRole="DAT_PRESENTACION" ToRole="DAT_INST_FMT_MINORISTA" />
+        </EntityType>
+        <EntityType Name="DAT_SECCION">
+          <Key>
+            <PropertyRef Name="id_seccion" />
+          </Key>
+          <Property Name="id_seccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_formato" Type="Int32" Nullable="false" />
+          <Property Name="nom_seccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orden_seccion" Type="Int32" Nullable="false" />
+          <Property Name="estado_seccion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_CAMPO" Relationship="Self.R_2" FromRole="DAT_SECCION" ToRole="DAT_CAMPO" />
+          <NavigationProperty Name="DAT_FORMATO" Relationship="Self.R_1" FromRole="DAT_SECCION" ToRole="DAT_FORMATO" />
+        </EntityType>
+        <EntityType Name="DAT_UNIDAD">
+          <Key>
+            <PropertyRef Name="id_unidad" />
+          </Key>
+          <Property Name="id_unidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_unidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado_unidad" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_INST_FMT_MAYORISTA" Relationship="Self.R_11" FromRole="DAT_UNIDAD" ToRole="DAT_INST_FMT_MAYORISTA" />
+          <NavigationProperty Name="DAT_INST_FMT_MINORISTA" Relationship="Self.R_14" FromRole="DAT_UNIDAD" ToRole="DAT_INST_FMT_MINORISTA" />
+        </EntityType>
+        <EntityType Name="VW_MAESTRO_CAMPO">
+          <Key>
+            <PropertyRef Name="id_campo" />
+            <PropertyRef Name="nom_seccion" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="nom_campo" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="obligatorio" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+          </Key>
+          <Property Name="id_campo" Type="Int32" Nullable="false" />
+          <Property Name="nom_seccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom_formato" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom_campo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="desc_campo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="obligatorio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_fecha" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_MAESTRO_FORMATO">
+          <Key>
+            <PropertyRef Name="id_formato" />
+            <PropertyRef Name="tipo_formato" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="id_formato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_formato" Type="Int32" Nullable="false" />
+          <Property Name="nom_formato" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_MAESTRO_SECCION">
+          <Key>
+            <PropertyRef Name="id_seccion" />
+            <PropertyRef Name="nom_formato" />
+            <PropertyRef Name="nom_seccion" />
+            <PropertyRef Name="orden" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="ult_usuario" />
+            <PropertyRef Name="ult_fecha" />
+          </Key>
+          <Property Name="id_seccion" Type="Int32" Nullable="false" />
+          <Property Name="nom_formato" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom_seccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ult_fecha" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="R_2">
+          <End Role="DAT_SECCION" Type="Self.DAT_SECCION" Multiplicity="1" />
+          <End Role="DAT_CAMPO" Type="Self.DAT_CAMPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_SECCION">
+              <PropertyRef Name="id_seccion" />
+            </Principal>
+            <Dependent Role="DAT_CAMPO">
+              <PropertyRef Name="id_seccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_10">
+          <End Role="DAT_ESPECIE" Type="Self.DAT_ESPECIE" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESPECIE">
+              <PropertyRef Name="id_especie" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_especie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_13">
+          <End Role="DAT_ESPECIE" Type="Self.DAT_ESPECIE" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESPECIE">
+              <PropertyRef Name="id_especie" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_especie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_16">
+          <End Role="DAT_ESTADO" Type="Self.DAT_ESTADO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESTADO">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_18">
+          <End Role="DAT_ESTADO" Type="Self.DAT_ESTADO" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ESTADO">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_1">
+          <End Role="DAT_FORMATO" Type="Self.DAT_FORMATO" Multiplicity="1" />
+          <End Role="DAT_SECCION" Type="Self.DAT_SECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="DAT_SECCION">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_3">
+          <End Role="DAT_FORMATO" Type="Self.DAT_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Principal>
+            <Dependent Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_11">
+          <End Role="DAT_UNIDAD" Type="Self.DAT_UNIDAD" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_UNIDAD">
+              <PropertyRef Name="id_unidad" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_12">
+          <End Role="DAT_LUGAR" Type="Self.DAT_LUGAR" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_LUGAR">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_17">
+          <End Role="DAT_PRESENTACION" Type="Self.DAT_PRESENTACION" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PRESENTACION">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_5">
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MAYORISTA" Type="Self.DAT_INST_FMT_MAYORISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MAYORISTA">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_14">
+          <End Role="DAT_UNIDAD" Type="Self.DAT_UNIDAD" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_UNIDAD">
+              <PropertyRef Name="id_unidad" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_15">
+          <End Role="DAT_LUGAR" Type="Self.DAT_LUGAR" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_LUGAR">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_19">
+          <End Role="DAT_PRESENTACION" Type="Self.DAT_PRESENTACION" Multiplicity="0..1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PRESENTACION">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_6">
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="1" />
+          <End Role="DAT_INST_FMT_MINORISTA" Type="Self.DAT_INST_FMT_MINORISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Principal>
+            <Dependent Role="DAT_INST_FMT_MINORISTA">
+              <PropertyRef Name="id_formato" />
+              <PropertyRef Name="id_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="DAT_MERCADO" Type="Self.DAT_MERCADO" Multiplicity="1" />
+          <End Role="DAT_INST_FORMATO" Type="Self.DAT_INST_FORMATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_MERCADO">
+              <PropertyRef Name="id_mercado" />
+            </Principal>
+            <Dependent Role="DAT_INST_FORMATO">
+              <PropertyRef Name="id_mercado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_REGISTROSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DAT_CAMPO" EntityType="Self.DAT_CAMPO" />
+          <EntitySet Name="DAT_ESPECIE" EntityType="Self.DAT_ESPECIE" />
+          <EntitySet Name="DAT_ESTADO" EntityType="Self.DAT_ESTADO" />
+          <EntitySet Name="DAT_FORMATO" EntityType="Self.DAT_FORMATO" />
+          <EntitySet Name="DAT_INST_FMT_MAYORISTA" EntityType="Self.DAT_INST_FMT_MAYORISTA" />
+          <EntitySet Name="DAT_INST_FMT_MINORISTA" EntityType="Self.DAT_INST_FMT_MINORISTA" />
+          <EntitySet Name="DAT_INST_FORMATO" EntityType="Self.DAT_INST_FORMATO" />
+          <EntitySet Name="DAT_LUGAR" EntityType="Self.DAT_LUGAR" />
+          <EntitySet Name="DAT_MERCADO" EntityType="Self.DAT_MERCADO" />
+          <EntitySet Name="DAT_PRESENTACION" EntityType="Self.DAT_PRESENTACION" />
+          <EntitySet Name="DAT_SECCION" EntityType="Self.DAT_SECCION" />
+          <EntitySet Name="DAT_UNIDAD" EntityType="Self.DAT_UNIDAD" />
+          <EntitySet Name="VW_MAESTRO_CAMPO" EntityType="Self.VW_MAESTRO_CAMPO" />
+          <EntitySet Name="VW_MAESTRO_FORMATO" EntityType="Self.VW_MAESTRO_FORMATO" />
+          <EntitySet Name="VW_MAESTRO_SECCION" EntityType="Self.VW_MAESTRO_SECCION" />
+          <AssociationSet Name="R_2" Association="Self.R_2">
+            <End Role="DAT_SECCION" EntitySet="DAT_SECCION" />
+            <End Role="DAT_CAMPO" EntitySet="DAT_CAMPO" />
+          </AssociationSet>
+          <AssociationSet Name="R_10" Association="Self.R_10">
+            <End Role="DAT_ESPECIE" EntitySet="DAT_ESPECIE" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_13" Association="Self.R_13">
+            <End Role="DAT_ESPECIE" EntitySet="DAT_ESPECIE" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_16" Association="Self.R_16">
+            <End Role="DAT_ESTADO" EntitySet="DAT_ESTADO" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_18" Association="Self.R_18">
+            <End Role="DAT_ESTADO" EntitySet="DAT_ESTADO" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_1" Association="Self.R_1">
+            <End Role="DAT_FORMATO" EntitySet="DAT_FORMATO" />
+            <End Role="DAT_SECCION" EntitySet="DAT_SECCION" />
+          </AssociationSet>
+          <AssociationSet Name="R_3" Association="Self.R_3">
+            <End Role="DAT_FORMATO" EntitySet="DAT_FORMATO" />
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+          </AssociationSet>
+          <AssociationSet Name="R_11" Association="Self.R_11">
+            <End Role="DAT_UNIDAD" EntitySet="DAT_UNIDAD" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_12" Association="Self.R_12">
+            <End Role="DAT_LUGAR" EntitySet="DAT_LUGAR" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_17" Association="Self.R_17">
+            <End Role="DAT_PRESENTACION" EntitySet="DAT_PRESENTACION" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_5" Association="Self.R_5">
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+            <End Role="DAT_INST_FMT_MAYORISTA" EntitySet="DAT_INST_FMT_MAYORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_14" Association="Self.R_14">
+            <End Role="DAT_UNIDAD" EntitySet="DAT_UNIDAD" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_15" Association="Self.R_15">
+            <End Role="DAT_LUGAR" EntitySet="DAT_LUGAR" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_19" Association="Self.R_19">
+            <End Role="DAT_PRESENTACION" EntitySet="DAT_PRESENTACION" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_6" Association="Self.R_6">
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+            <End Role="DAT_INST_FMT_MINORISTA" EntitySet="DAT_INST_FMT_MINORISTA" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="DAT_MERCADO" EntitySet="DAT_MERCADO" />
+            <End Role="DAT_INST_FORMATO" EntitySet="DAT_INST_FORMATO" />
+          </AssociationSet>
+          <FunctionImport Name="p_DAT_CAMPO_Procesar">
+            <Parameter Name="tipo_operacion" Mode="In" Type="Int32" />
+            <Parameter Name="id_campo" Mode="In" Type="Int32" />
+            <Parameter Name="id_seccion" Mode="In" Type="Int32" />
+            <Parameter Name="nom_campo" Mode="In" Type="String" />
+            <Parameter Name="desc_campo" Mode="In" Type="String" />
+            <Parameter Name="estado_campo" Mode="In" Type="String" />
+            <Parameter Name="oblig_campo" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="cod_error" Mode="InOut" Type="Int32" />
+            <Parameter Name="msg_error" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_DAT_FORMATO_Eliminar">
+            <Parameter Name="id_formato" Mode="In" Type="Int32" />
+            <Parameter Name="cod_error" Mode="InOut" Type="Int32" />
+            <Parameter Name="msg_error" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_DAT_FORMATO_Procesar">
+            <Parameter Name="tipo_operacion" Mode="In" Type="Int32" />
+            <Parameter Name="id_formato" Mode="In" Type="Int32" />
+            <Parameter Name="tipo_formato" Mode="In" Type="Int32" />
+            <Parameter Name="nom_formato" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="cod_error" Mode="InOut" Type="Int32" />
+            <Parameter Name="msg_error" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_DAT_SECCION_Procesar">
+            <Parameter Name="tipo_operacion" Mode="In" Type="Int32" />
+            <Parameter Name="id_seccion" Mode="In" Type="Int32" />
+            <Parameter Name="id_formato" Mode="In" Type="Int32" />
+            <Parameter Name="nom_seccion" Mode="In" Type="String" />
+            <Parameter Name="orden_seccion" Mode="In" Type="Int32" />
+            <Parameter Name="estado_seccion" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="cod_error" Mode="InOut" Type="Int32" />
+            <Parameter Name="msg_error" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_REGISTROSModelStoreContainer" CdmEntityContainer="DB_REGISTROSEntities">
+          <EntitySetMapping Name="DAT_CAMPO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_CAMPO">
+              <MappingFragment StoreEntitySet="DAT_CAMPO">
+                <ScalarProperty Name="id_campo" ColumnName="id_campo" />
+                <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
+                <ScalarProperty Name="nom_campo" ColumnName="nom_campo" />
+                <ScalarProperty Name="desc_campo" ColumnName="desc_campo" />
+                <ScalarProperty Name="estado_campo" ColumnName="estado_campo" />
+                <ScalarProperty Name="oblig_campo" ColumnName="oblig_campo" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ESPECIE">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_ESPECIE">
+              <MappingFragment StoreEntitySet="DAT_ESPECIE">
+                <ScalarProperty Name="id_especie" ColumnName="id_especie" />
+                <ScalarProperty Name="nom_especie" ColumnName="nom_especie" />
+                <ScalarProperty Name="estado_especie" ColumnName="estado_especie" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ESTADO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_ESTADO">
+              <MappingFragment StoreEntitySet="DAT_ESTADO">
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="nom_estado" ColumnName="nom_estado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_FORMATO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_FORMATO">
+              <MappingFragment StoreEntitySet="DAT_FORMATO">
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="tipo_formato" ColumnName="tipo_formato" />
+                <ScalarProperty Name="nom_formato" ColumnName="nom_formato" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_INST_FMT_MAYORISTA">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_INST_FMT_MAYORISTA">
+              <MappingFragment StoreEntitySet="DAT_INST_FMT_MAYORISTA">
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_instancia" ColumnName="id_instancia" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="precio_min" ColumnName="precio_min" />
+                <ScalarProperty Name="precio_max" ColumnName="precio_max" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_especie" ColumnName="id_especie" />
+                <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+                <ScalarProperty Name="id_lugar" ColumnName="id_lugar" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+                <ScalarProperty Name="peso_unidad" ColumnName="peso_unidad" />
+                <ScalarProperty Name="tamanio" ColumnName="tamanio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_INST_FMT_MINORISTA">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_INST_FMT_MINORISTA">
+              <MappingFragment StoreEntitySet="DAT_INST_FMT_MINORISTA">
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_instancia" ColumnName="id_instancia" />
+                <ScalarProperty Name="id_especie" ColumnName="id_especie" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+                <ScalarProperty Name="precio_min" ColumnName="precio_min" />
+                <ScalarProperty Name="precio_max" ColumnName="precio_max" />
+                <ScalarProperty Name="id_lugar" ColumnName="id_lugar" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="tamanio" ColumnName="tamanio" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_INST_FORMATO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_INST_FORMATO">
+              <MappingFragment StoreEntitySet="DAT_INST_FORMATO">
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="id_mercado" ColumnName="id_mercado" />
+                <ScalarProperty Name="id_instancia" ColumnName="id_instancia" />
+                <ScalarProperty Name="user_instancia" ColumnName="user_instancia" />
+                <ScalarProperty Name="estado_instancia" ColumnName="estado_instancia" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_LUGAR">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_LUGAR">
+              <MappingFragment StoreEntitySet="DAT_LUGAR">
+                <ScalarProperty Name="id_lugar" ColumnName="id_lugar" />
+                <ScalarProperty Name="nom_lugar" ColumnName="nom_lugar" />
+                <ScalarProperty Name="estado_lugar" ColumnName="estado_lugar" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_MERCADO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_MERCADO">
+              <MappingFragment StoreEntitySet="DAT_MERCADO">
+                <ScalarProperty Name="id_mercado" ColumnName="id_mercado" />
+                <ScalarProperty Name="nom_mercado" ColumnName="nom_mercado" />
+                <ScalarProperty Name="desc_mercado" ColumnName="desc_mercado" />
+                <ScalarProperty Name="distrito_mercado" ColumnName="distrito_mercado" />
+                <ScalarProperty Name="estado_mercado" ColumnName="estado_mercado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_PRESENTACION">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_PRESENTACION">
+              <MappingFragment StoreEntitySet="DAT_PRESENTACION">
+                <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+                <ScalarProperty Name="nom_presentacion" ColumnName="nom_presentacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_SECCION">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_SECCION">
+              <MappingFragment StoreEntitySet="DAT_SECCION">
+                <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="nom_seccion" ColumnName="nom_seccion" />
+                <ScalarProperty Name="orden_seccion" ColumnName="orden_seccion" />
+                <ScalarProperty Name="estado_seccion" ColumnName="estado_seccion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_UNIDAD">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.DAT_UNIDAD">
+              <MappingFragment StoreEntitySet="DAT_UNIDAD">
+                <ScalarProperty Name="id_unidad" ColumnName="id_unidad" />
+                <ScalarProperty Name="nom_unidad" ColumnName="nom_unidad" />
+                <ScalarProperty Name="estado_unidad" ColumnName="estado_unidad" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MAESTRO_CAMPO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.VW_MAESTRO_CAMPO">
+              <MappingFragment StoreEntitySet="VW_MAESTRO_CAMPO">
+                <ScalarProperty Name="id_campo" ColumnName="id_campo" />
+                <ScalarProperty Name="nom_seccion" ColumnName="nom_seccion" />
+                <ScalarProperty Name="nom_formato" ColumnName="nom_formato" />
+                <ScalarProperty Name="nom_campo" ColumnName="nom_campo" />
+                <ScalarProperty Name="desc_campo" ColumnName="desc_campo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="obligatorio" ColumnName="obligatorio" />
+                <ScalarProperty Name="ult_usuario" ColumnName="ult_usuario" />
+                <ScalarProperty Name="ult_fecha" ColumnName="ult_fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MAESTRO_FORMATO">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.VW_MAESTRO_FORMATO">
+              <MappingFragment StoreEntitySet="VW_MAESTRO_FORMATO">
+                <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+                <ScalarProperty Name="tipo_formato" ColumnName="tipo_formato" />
+                <ScalarProperty Name="nom_formato" ColumnName="nom_formato" />
+                <ScalarProperty Name="ult_usuario" ColumnName="ult_usuario" />
+                <ScalarProperty Name="ult_fecha" ColumnName="ult_fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MAESTRO_SECCION">
+            <EntityTypeMapping TypeName="DB_REGISTROSModel.VW_MAESTRO_SECCION">
+              <MappingFragment StoreEntitySet="VW_MAESTRO_SECCION">
+                <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
+                <ScalarProperty Name="nom_formato" ColumnName="nom_formato" />
+                <ScalarProperty Name="nom_seccion" ColumnName="nom_seccion" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ult_usuario" ColumnName="ult_usuario" />
+                <ScalarProperty Name="ult_fecha" ColumnName="ult_fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_DAT_CAMPO_Procesar" FunctionName="DB_REGISTROSModel.Store.p_DAT_CAMPO_Procesar" />
+          <FunctionImportMapping FunctionImportName="p_DAT_FORMATO_Eliminar" FunctionName="DB_REGISTROSModel.Store.p_DAT_FORMATO_Eliminar" />
+          <FunctionImportMapping FunctionImportName="p_DAT_FORMATO_Procesar" FunctionName="DB_REGISTROSModel.Store.p_DAT_FORMATO_Procesar" />
+          <FunctionImportMapping FunctionImportName="p_DAT_SECCION_Procesar" FunctionName="DB_REGISTROSModel.Store.p_DAT_SECCION_Procesar" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

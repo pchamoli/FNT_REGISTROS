@@ -1,0 +1,62 @@
+﻿@model MERCADOS.Web.Models.FormatoViewModel
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de formato</h2>
+<br />
+<br />
+<div>
+    <h4>Muestra el registro detallado del formato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.tipo_formato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_formato)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_formato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_formato)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_formato }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>
