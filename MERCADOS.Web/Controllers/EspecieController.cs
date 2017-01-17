@@ -41,8 +41,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                especies = especies.Where(s => s.nom_especie.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                especies = especies.Where(s => s.nom_especie.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -113,6 +113,7 @@ namespace MERCADOS.Web.Controllers
                     especieModel.usuario_creacion = "RTELLO1";
                     especieModel.fecha_creacion = DateTime.Now;
                     especieModel.estado_especie = (especieModel.EsActivo ? "1" : "0");
+                    especieModel.nom_especie = especieModel.nom_especie.ToUpper();
 
                     db.EspecieModels.Add(especieModel);
                     db.SaveChanges();
@@ -156,6 +157,7 @@ namespace MERCADOS.Web.Controllers
 
                     especieModel.usuario_modificacion = "RTELLO1";
                     especieModel.fecha_modificacion = DateTime.Now;
+                    especieModel.nom_especie = especieModel.nom_especie.ToUpper();
 
                     db.Entry(especieModel).State = EntityState.Modified;
                     db.Entry(especieModel).Property("usuario_creacion").IsModified = false;

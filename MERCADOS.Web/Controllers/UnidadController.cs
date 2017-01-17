@@ -41,8 +41,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                unidades = unidades.Where(s => s.nom_unidad.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                unidades = unidades.Where(s => s.nom_unidad.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -113,6 +113,7 @@ namespace MERCADOS.Web.Controllers
                     unidadModel.usuario_creacion = "RTELLO1";
                     unidadModel.fecha_creacion = DateTime.Now;
                     unidadModel.estado_unidad = (unidadModel.EsActivo ? "1" : "0");
+                    unidadModel.nom_unidad = unidadModel.nom_unidad.ToUpper();
 
                     db.UnidadModels.Add(unidadModel);
                     db.SaveChanges();
@@ -155,6 +156,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     unidadModel.usuario_modificacion = "RTELLO1";
                     unidadModel.fecha_modificacion = DateTime.Now;
+                    unidadModel.nom_unidad = unidadModel.nom_unidad.ToUpper();
 
                     db.Entry(unidadModel).State = EntityState.Modified;
                     db.Entry(unidadModel).Property("usuario_creacion").IsModified = false;

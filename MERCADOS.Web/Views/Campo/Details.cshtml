@@ -1,0 +1,84 @@
+﻿@model MERCADOS.Web.Models.CampoViewModel
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de campo</h2>
+<br />
+<br />
+<div>
+    <h4>Muestra el registro detallado del campo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_formato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_formato)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_seccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_seccion)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_campo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_campo)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.desc_campo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_campo)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.obligatorio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.obligatorio)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_campo }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

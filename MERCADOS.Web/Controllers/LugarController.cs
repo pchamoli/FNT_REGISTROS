@@ -41,8 +41,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                lugares = lugares.Where(s => s.nom_lugar.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                lugares = lugares.Where(s => s.nom_lugar.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -113,6 +113,7 @@ namespace MERCADOS.Web.Controllers
                     lugarModel.usuario_creacion = "RTELLO1";
                     lugarModel.fecha_creacion = DateTime.Now;
                     lugarModel.estado_lugar = (lugarModel.EsActivo ? "1" : "0");
+                    lugarModel.nom_lugar = lugarModel.nom_lugar.ToUpper();
 
                     db.LugarModels.Add(lugarModel);
                     db.SaveChanges();
@@ -155,6 +156,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     lugarModel.usuario_modificacion = "RTELLO1";
                     lugarModel.fecha_modificacion = DateTime.Now;
+                    lugarModel.nom_lugar = lugarModel.nom_lugar.ToUpper();
 
                     db.Entry(lugarModel).State = EntityState.Modified;
                     db.Entry(lugarModel).Property("usuario_creacion").IsModified = false;

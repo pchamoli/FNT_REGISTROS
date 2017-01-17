@@ -42,8 +42,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                formatos = formatos.Where(s => s.nom_formato.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                formatos = formatos.Where(s => s.nom_formato.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -120,6 +120,7 @@ namespace MERCADOS.Web.Controllers
                     formatoModel.usuario_creacion = "RTELLO1";
                     formatoModel.fecha_creacion = DateTime.Now;
                     formatoModel.estado = (formatoModel.EsActivo ? "1" : "0");
+                    formatoModel.nom_formato = formatoModel.nom_formato.ToUpper();
                     
                     db.FormatoModels.Add(formatoModel);
                     db.SaveChanges();
@@ -162,6 +163,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     formatoModel.usuario_modificacion = "RTELLO1";
                     formatoModel.fecha_modificacion = DateTime.Now;
+                    formatoModel.nom_formato = formatoModel.nom_formato.ToUpper();
 
                     db.Entry(formatoModel).State = EntityState.Modified;
                     db.Entry(formatoModel).Property("usuario_creacion").IsModified = false;

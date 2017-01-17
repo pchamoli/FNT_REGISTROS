@@ -43,5 +43,13 @@ namespace MERCADOS.Web.Models
 
         public System.Data.Entity.DbSet<MERCADOS.Web.Models.UnidadViewModel> UnidadViewModels { get; set; }
 
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.SeccionModel> SeccionModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.SeccionViewModel> SeccionViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.CampoModel> CampoModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.CampoViewModel> CampoViewModels { get; set; }
+
     }
 }

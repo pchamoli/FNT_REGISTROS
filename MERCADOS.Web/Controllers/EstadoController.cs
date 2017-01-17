@@ -41,8 +41,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                estados = estados.Where(s => s.nom_estado.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                estados = estados.Where(s => s.nom_estado.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -113,6 +113,7 @@ namespace MERCADOS.Web.Controllers
                     estadoModel.usuario_creacion = "RTELLO1";
                     estadoModel.fecha_creacion = DateTime.Now;
                     estadoModel.estado = (estadoModel.EsActivo ? "1" : "0");
+                    estadoModel.nom_estado = estadoModel.nom_estado.ToUpper();
 
                     db.EstadoModels.Add(estadoModel);
                     db.SaveChanges();
@@ -155,6 +156,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     estadoModel.usuario_modificacion = "RTELLO1";
                     estadoModel.fecha_modificacion = DateTime.Now;
+                    estadoModel.nom_estado = estadoModel.nom_estado.ToUpper();
 
                     db.Entry(estadoModel).State = EntityState.Modified;
                     db.Entry(estadoModel).Property("usuario_creacion").IsModified = false;

@@ -41,8 +41,8 @@ namespace MERCADOS.Web.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                presentaciones = presentaciones.Where(s => s.nom_presentacion.Contains(searchString)
-                                            || s.ult_usuario.Contains(searchString));
+                presentaciones = presentaciones.Where(s => s.nom_presentacion.Contains(searchString.ToUpper())
+                                            || s.ult_usuario.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -113,6 +113,7 @@ namespace MERCADOS.Web.Controllers
                     presentacionModel.usuario_creacion = "RTELLO1";
                     presentacionModel.fecha_creacion = DateTime.Now;
                     presentacionModel.estado = (presentacionModel.EsActivo ? "1" : "0");
+                    presentacionModel.nom_presentacion = presentacionModel.nom_presentacion.ToUpper();
 
                     db.PresentacionModels.Add(presentacionModel);
                     db.SaveChanges();
@@ -155,6 +156,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     presentacionModel.usuario_modificacion = "RTELLO1";
                     presentacionModel.fecha_modificacion = DateTime.Now;
+                    presentacionModel.nom_presentacion = presentacionModel.nom_presentacion.ToUpper();
 
                     db.Entry(presentacionModel).State = EntityState.Modified;
                     db.Entry(presentacionModel).Property("usuario_creacion").IsModified = false;
