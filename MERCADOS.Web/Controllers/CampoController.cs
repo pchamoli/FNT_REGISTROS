@@ -12,6 +12,7 @@ using PagedList;
 
 namespace MERCADOS.Web.Controllers
 {
+    // Comentario CampoController
     public class CampoController : Controller
     {
         private MERCADOSWebContext db = new MERCADOSWebContext();
