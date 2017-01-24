@@ -280,6 +280,7 @@
     <Content Include="Views\Mercado\Details.cshtml" />
     <Content Include="Views\Mercado\Edit.cshtml" />
     <Content Include="Views\Mercado\Index.cshtml" />
+    <Content Include="Views\FmtMayorista\Items.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
