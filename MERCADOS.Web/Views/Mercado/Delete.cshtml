@@ -1,0 +1,98 @@
+﻿@model MERCADOS.Web.Models.MercadoViewModel
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar mercado</h2>
+
+<h3>Eliminación de registro</h3>
+<div>
+    <h4>¿Está seguro que desea eliminar este mercado?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_mercado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_mercado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.desc_mercado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_mercado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departamento)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.provincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.provincia)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.distrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distrito)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

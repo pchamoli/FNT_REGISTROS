@@ -24,6 +24,7 @@ namespace MERCADOS.Web.Controllers
             ViewBag.UsuarioSortParm = sortOrder == "Usuario" ? "ult_usuario" : "Usuario";
             ViewBag.FechaSortParm = sortOrder == "Fecha" ? "ult_fecha" : "Fecha";
             ViewBag.EstadoSortParm = sortOrder == "Estado" ? "estado" : "Estado";
+            ViewBag.NomCientSortParm = sortOrder == "Cienti" ? "nombre_cientifico" : "Cienti";
 
             if (searchString != null)
             {
@@ -42,7 +43,8 @@ namespace MERCADOS.Web.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 especies = especies.Where(s => s.nom_especie.Contains(searchString.ToUpper())
-                                            || s.ult_usuario.Contains(searchString.ToUpper()));
+                                            || s.ult_usuario.Contains(searchString.ToUpper())
+                                            || s.nombre_cientifico.Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -67,6 +69,12 @@ namespace MERCADOS.Web.Controllers
                     break;
                 case "estado":
                     especies = especies.OrderByDescending(s => s.estado);
+                    break;
+                case "Cienti":
+                    especies = especies.OrderBy(s => s.nombre_cientifico);
+                    break;
+                case "nombre_cientifico":
+                    especies = especies.OrderByDescending(s => s.nombre_cientifico);
                     break;
                 default:
                     especies = especies.OrderBy(s => s.nom_especie);
@@ -104,7 +112,7 @@ namespace MERCADOS.Web.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_especie,nom_especie,usuario_creacion,fecha_creacion,usuario_modificacion,fecha_modificacion,estado_especie,EsActivo")] EspecieModel especieModel)
+        public ActionResult Create([Bind(Include = "id_especie,nom_especie,usuario_creacion,fecha_creacion,usuario_modificacion,fecha_modificacion,estado_especie,EsActivo,nombre_cientifico")] EspecieModel especieModel)
         {
             try
             {
@@ -148,7 +156,7 @@ namespace MERCADOS.Web.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_especie,nom_especie,usuario_creacion,fecha_creacion,usuario_modificacion,fecha_modificacion,estado_especie,EsActivo")] EspecieModel especieModel)
+        public ActionResult Edit([Bind(Include = "id_especie,nom_especie,usuario_creacion,fecha_creacion,usuario_modificacion,fecha_modificacion,estado_especie,EsActivo,nombre_cientifico")] EspecieModel especieModel)
         {
             try
             {

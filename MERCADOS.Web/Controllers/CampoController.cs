@@ -210,7 +210,7 @@ namespace MERCADOS.Web.Controllers
                     campoModel.estado_campo = (campoModel.EsActivo ? "1" : "0");
                     campoModel.oblig_campo = (campoModel.EsObligatorio ? "1" : "0");
                     campoModel.nom_campo = campoModel.nom_campo.ToUpper();
-                    campoModel.desc_campo = campoModel.desc_campo.ToUpper();
+                    campoModel.desc_campo = campoModel.desc_campo?.ToUpper();
 
                     db.CampoModels.Add(campoModel);
                     db.SaveChanges();
@@ -261,7 +261,7 @@ namespace MERCADOS.Web.Controllers
                     campoModel.usuario_modificacion = "RTELLO1";
                     campoModel.fecha_modificacion = DateTime.Now;
                     campoModel.nom_campo = campoModel.nom_campo.ToUpper();
-                    campoModel.desc_campo = campoModel.desc_campo.ToUpper();
+                    campoModel.desc_campo = campoModel.desc_campo?.ToUpper();
 
                     db.Entry(campoModel).State = EntityState.Modified;
                     db.Entry(campoModel).Property("usuario_creacion").IsModified = false;

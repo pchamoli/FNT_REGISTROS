@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<MERCADOS.Web.Models.MercadoViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de mercados</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Nuevo mercado", "Create")
+</p>
+<br />
+@using (Html.BeginForm("Index", "Mercado", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Buscar" />
+        @Html.ActionLink("Limpiar", "Index", "Mercado")
+    </p>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Nombre de mercado", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Departamento", "Index", new { sortOrder = ViewBag.DptoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Provincia", "Index", new { sortOrder = ViewBag.ProvSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Distrito", "Index", new { sortOrder = ViewBag.DistSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Tipo", "Index", new { sortOrder = ViewBag.TipoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Ultimo usuario", "Index", new { sortOrder = ViewBag.UsuarioSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Ultima fecha", "Index", new { sortOrder = ViewBag.FechaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Estado", "Index", new { sortOrder = ViewBag.EstadoSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_mercado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.provincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.distrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ult_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ult_fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_mercado }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_mercado }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_mercado })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<br />
+<div>
+    @Html.ActionLink("Regresar", "Index", "Home")
+</div>

@@ -1,0 +1,82 @@
+﻿@model MERCADOS.Web.Models.InstanciaViewModel
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar instancia de formato</h2>
+
+<h3>Eliminación de registro</h3>
+<div>
+    <h4>¿Está seguro que desea eliminar esta instancia?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_formato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_formato)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_mercado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_mercado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.fecha_formato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_formato)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

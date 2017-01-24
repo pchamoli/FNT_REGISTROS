@@ -1,0 +1,155 @@
+﻿@model MERCADOS.Web.Models.MercadoModel
+
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    HtmlHelper.ClientValidationEnabled = true;
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        PrepareCheckbox();
+        $("#prov_mercado").attr("disabled", "disabled");
+        $("#distrito_mercado").attr("disabled", "disabled");
+
+        $("#dpto_mercado").change(function () {
+            $("#prov_mercado").removeAttr("disabled");
+            $("#distrito_mercado").removeAttr("disabled");
+
+            var dptoID = $(this).val();
+            $.getJSON("/Mercado/CargarProvincias", { dpto: dptoID },
+                   function (data) {
+                       var select = $("#prov_mercado");
+                       select.empty();
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.codigo_provincia,
+                               text: itemData.provincia
+                           }));
+                           var selectD = $("#distrito_mercado");
+                           selectD.empty();
+                           selectD.append($('<option/>', {
+                               value: "",
+                               text: "Seleccione"
+                           }));
+                           $("#distrito_mercado").attr("disabled", "disabled");
+                       });
+                   });
+        });
+
+        $("#prov_mercado").change(function () {
+            $("#distrito_mercado").removeAttr("disabled");
+
+            var dptoID = $("#dpto_mercado").val();
+            var provID = $(this).val();
+            $.getJSON("/Mercado/CargarDistritos", { dpto: dptoID, prov: provID },
+                   function (data) {
+                       var select = $("#distrito_mercado");
+                       select.empty();
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.codigo_distrito,
+                               text: itemData.distrito
+                           }));
+                       });
+                   });
+        });
+    });
+
+    function PrepareCheckbox(){
+        document.getElementById("EsActivo").checked = true;
+   }
+
+</script>
+
+<h2>Nuevo mercado</h2>
+<br />
+<br />
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Registro de un nuevo mercado</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.nom_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nom_mercado, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                @Html.ValidationMessageFor(model => model.nom_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.desc_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.desc_mercado, new { htmlAttributes = new { @class = "form-control", @cols = 80, @rows = 8, @style = "text-transform:uppercase" } })
+                @Html.ValidationMessageFor(model => model.desc_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.dpto_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.dpto_mercado, (SelectList)ViewBag.DepartamentoList, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dpto_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.prov_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.prov_mercado, (SelectList)ViewBag.ProvinciaList, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prov_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.distrito_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.distrito_mercado, (SelectList)ViewBag.DistritoList, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.distrito_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.tipo_mercado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.tipo_mercado, new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "Seleccione un tipo"  },
+                       new { value = 1 , text = "Minorista"  },
+                       new { value = 2 , text = "Mayorista" }
+                    },
+                  "value",
+                  "text",
+                   0))                
+                @Html.ValidationMessageFor(model => model.tipo_mercado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+            @Html.LabelFor(model => model.EsActivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EsActivo, new { htmlAttributes = new { @checked = "checked" } })
+                @Html.ValidationMessageFor(model => model.EsActivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Grabar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
