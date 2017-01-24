@@ -111,6 +111,8 @@ namespace MERCADOS.Web.Controllers
                     break;
             }*/
 
+            ViewBag.TotalCountMinorista = vista.Detalle.Count();
+
             return View(vista);
         }
 

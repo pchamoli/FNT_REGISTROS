@@ -80,7 +80,7 @@ namespace MERCADOS.Web.Models
         [Display(Name = "Usuario solicitante")]
         public string usuario { get; set; }
 
-        [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Fecha formato")]
         public System.DateTime fecha_formato { get; set; }
 

@@ -260,6 +260,11 @@
     <Content Include="Views\Campo\Details.cshtml" />
     <Content Include="Views\Campo\Edit.cshtml" />
     <Content Include="Views\Campo\Index.cshtml" />
+    <Content Include="Views\Instancia\Create.cshtml" />
+    <Content Include="Views\Instancia\Delete.cshtml" />
+    <Content Include="Views\Instancia\Details.cshtml" />
+    <Content Include="Views\Instancia\Edit.cshtml" />
+    <Content Include="Views\Instancia\Index.cshtml" />
     <Content Include="Views\FmtMayorista\Create.cshtml" />
     <Content Include="Views\FmtMayorista\Delete.cshtml" />
     <Content Include="Views\FmtMayorista\Details.cshtml" />

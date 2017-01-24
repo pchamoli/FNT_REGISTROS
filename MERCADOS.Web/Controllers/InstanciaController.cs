@@ -25,10 +25,11 @@ namespace MERCADOS.Web.Controllers
             ViewBag.MercadoSortParm = sortOrder == "Mercado" ? "nom_mercado" : "Mercado";
             ViewBag.UsuarioSortParm = sortOrder == "Usuario" ? "ult_usuario" : "Usuario";
             ViewBag.FechaSortParm = sortOrder == "Fecha" ? "ult_fecha" : "Fecha";
+            ViewBag.Fecha1SortParm = sortOrder == "Fecha1" ? "fecha_formato" : "Fecha1";
             ViewBag.EstadoSortParm = sortOrder == "Estado" ? "estado" : "Estado";
 
             ViewBag.FormatoList = new SelectList(GetFormatos(), "value", "text", currentFilter2);
-            ViewBag.MercadoList = new SelectList(GetMercados(), "value", "text", currentFilter3);
+            ViewBag.MercadoList = new SelectList(GetMercados((cbFormatos == null) ? 0 : Convert.ToInt32(cbFormatos)), "value", "text", currentFilter3);
 
             if ((FechaDesde!= null) && (FechaDesde != ""))
             {
@@ -94,7 +95,7 @@ namespace MERCADOS.Web.Controllers
                 {
                     if (FechaDesde == null && FechaHasta != null)
                     {
-                        var fechaFin = Convert.ToDateTime(FechaDesde);
+                        var fechaFin = Convert.ToDateTime(FechaHasta);
                         instancias = instancias.Where(s => s.id_formato == (formatoID != 0 ? formatoID : s.id_formato)
                                                       && s.id_mercado == (mercadoID != 0 ? mercadoID : s.id_mercado)
                                                       && s.fecha_formato <= fechaFin);
@@ -102,7 +103,7 @@ namespace MERCADOS.Web.Controllers
                     else
                     {
                         var fechaIni = Convert.ToDateTime(FechaDesde);
-                        var fechaFin = Convert.ToDateTime(FechaDesde);
+                        var fechaFin = Convert.ToDateTime(FechaHasta);
 
                         instancias = instancias.Where(s => s.id_formato == (formatoID != 0 ? formatoID : s.id_formato)
                                                       && s.id_mercado == (mercadoID != 0 ? mercadoID : s.id_mercado)
@@ -140,10 +141,18 @@ namespace MERCADOS.Web.Controllers
                 case "estado":
                     instancias = instancias.OrderByDescending(s => s.estado);
                     break;
+                case "Fecha1":
+                    instancias = instancias.OrderBy(s => s.fecha_formato);
+                    break;
+                case "fecha_formato":
+                    instancias = instancias.OrderByDescending(s => s.fecha_formato);
+                    break;
                 default:
                     instancias = instancias.OrderBy(s => s.nom_formato);
                     break;
             }
+
+            ViewBag.TotalCount = instancias.Count();
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
@@ -190,13 +199,23 @@ namespace MERCADOS.Web.Controllers
             }
         }
 
-        public IEnumerable<SelectListItem> GetMercados()
+        public JsonResult CargarMercados(int id_formato)
         {
-            var mercados = db.MercadoModels.Select(f => new SelectListItem
-            {
-                Value = f.id_mercado.ToString(),
-                Text = f.nom_mercado
-            });
+            var mercados = from s in db.MercadoModels
+                            where s.tipo_mercado == id_formato
+                            select s;
+
+            return Json(mercados, JsonRequestBehavior.AllowGet);
+        }
+
+        public IEnumerable<SelectListItem> GetMercados(int id_formato)
+        {
+            var mercados = db.MercadoModels.Where(x => x.tipo_mercado == id_formato).
+                Select(f => new SelectListItem
+                {
+                    Value = f.id_mercado.ToString(),
+                    Text = f.nom_mercado
+                });
 
             return DefaultFlavorItem2.Concat(mercados);
         }
@@ -219,7 +238,7 @@ namespace MERCADOS.Web.Controllers
         public ActionResult Create()
         {
             ViewBag.FormatoList = new SelectList(GetFormatos(), "value", "text");
-            ViewBag.MercadoList = new SelectList(GetMercados(), "value", "text");
+            ViewBag.MercadoList = new SelectList(GetMercados(0), "value", "text");
 
             return View();
         }
@@ -259,7 +278,7 @@ namespace MERCADOS.Web.Controllers
             }
 
             ViewBag.FormatoList = new SelectList(GetFormatos(), "value", "text");
-            ViewBag.MercadoList = new SelectList(GetMercados(), "value", "text");
+            ViewBag.MercadoList = new SelectList(GetMercados(instanciaModel.id_formato), "value", "text");
             return View(instanciaModel);
         }
 
@@ -277,7 +296,7 @@ namespace MERCADOS.Web.Controllers
             }
 
             ViewBag.FormatoList = new SelectList(GetFormatos(), "value", "text", instanciaModel.id_formato);
-            ViewBag.MercadoList = new SelectList(GetMercados(), "value", "text", instanciaModel.id_mercado);
+            ViewBag.MercadoList = new SelectList(GetMercados(instanciaModel.id_formato), "value", "text", instanciaModel.id_mercado);
 
             return View(instanciaModel);
         }
@@ -322,7 +341,7 @@ namespace MERCADOS.Web.Controllers
             }
 
             ViewBag.FormatoList = new SelectList(GetFormatos(), "value", "text", instanciaModel.id_formato);
-            ViewBag.MercadoList = new SelectList(GetMercados(), "value", "text", instanciaModel.id_mercado);
+            ViewBag.MercadoList = new SelectList(GetMercados(instanciaModel.id_formato), "value", "text", instanciaModel.id_mercado);
             return View(instanciaModel);
         }
 
