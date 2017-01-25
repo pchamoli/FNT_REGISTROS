@@ -28,6 +28,9 @@
             @Html.ActionLink("Nombre de especie", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
+            @Html.ActionLink("Nombre científico", "Index", new { sortOrder = ViewBag.NomCientSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
             @Html.ActionLink("Ultimo usuario", "Index", new { sortOrder = ViewBag.UsuarioSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
@@ -44,6 +47,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.nom_especie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_cientifico)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ult_usuario)

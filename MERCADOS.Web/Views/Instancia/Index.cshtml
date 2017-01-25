@@ -1,0 +1,144 @@
+﻿@model PagedList.IPagedList<MERCADOS.Web.Models.InstanciaViewModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#cbFormatos").change(function () {
+            var formatoId = $(this).val();
+
+            $.getJSON("./CargarMercados", { id_formato: formatoId },
+                   function (data) {
+                       var select = $("#cbMercados");
+                       select.empty();
+                       select.append($('<option/>', {
+                           value: "0",
+                           text: "Seleccione un mercado"
+                       }));
+                       $.each(data, function (index, itemData) {
+                           select.append($('<option/>', {
+                               value: itemData.id_mercado,
+                               text: itemData.nom_mercado
+                           }));
+                       });
+                   });
+        });
+    });
+</script>
+
+<h2>Listado de Formatos</h2>
+<br />
+@using (Html.BeginForm("Index", "Instancia", FormMethod.Get))
+{
+    <form class="form-inicial">
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="form-group" id="formatoId">
+                    <label for="exampleInputEmail1">Formato: </label>
+                    @Html.DropDownList("cbFormatos", (SelectList)ViewBag.FormatoList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Mercado: </label>
+                    @Html.DropDownList("cbMercados", (SelectList)ViewBag.MercadoList, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Desde: </label>
+                    @Html.TextBox("FechaDesde", ViewBag.CurrentFilter as string, new { type = "date", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Hasta: </label>
+                    @Html.TextBox("FechaHasta", ViewBag.CurrentFilter as string, new { type = "date", @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Nueva instancia", "Create", "Instancia", new { Style = "color:white" })</button>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Limpiar", "Index", "Instancia", new { Style = "color:white" })</button>
+            </div>
+        </div>
+    </form>
+}
+<br />
+<br />
+<table class="table table-striped table-hover table-condensed tabla small">
+    <thead class="cabecera">
+        <tr>
+            <th>
+                @Html.ActionLink("Nombre de formato", "Index", new { sortOrder = ViewBag.FormatoSortParm, currentFilter = ViewBag.CurrentFilter }, new { Style = "color:White" })
+            </th>
+            <th>
+                @Html.ActionLink("Nombre de mercado", "Index", new { sortOrder = ViewBag.MercadoSortParm, currentFilter = ViewBag.CurrentFilter }, new { Style = "color:White" })
+            </th>
+            <th>
+                @Html.ActionLink("Fecha formato", "Index", new { sortOrder = ViewBag.Fecha1SortParm, currentFilter = ViewBag.CurrentFilter }, new { Style = "color:White" })
+            </th>
+            <th>
+                @Html.ActionLink("Ultimo usuario", "Index", new { sortOrder = ViewBag.UsuarioSortParm, currentFilter = ViewBag.CurrentFilter }, new { Style = "color:White" })
+            </th>
+            <th>
+                @Html.ActionLink("Ultima fecha", "Index", new { sortOrder = ViewBag.FechaSortParm, currentFilter = ViewBag.CurrentFilter }, new { Style = "color:White" })
+            </th>
+            <th>
+                @Html.ActionLink("Estado", "Index", new { sortOrder = ViewBag.EstadoSortParm, currentFilter = ViewBag.CurrentFilter },new { Style = "color:White" })
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_formato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_mercado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_formato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ult_usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ult_fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_instancia }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id_instancia }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_instancia })
+                </td>
+            </tr>
+        }
+
+</table>
+<br />
+Total registros: @ViewBag.TotalCount
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, currentFilter1 = ViewBag.CurrentFilter1, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3 }))
+<br />
+<div>
+    @*@Html.ActionLink("Regresar", "Index", "Home")*@
+</div>

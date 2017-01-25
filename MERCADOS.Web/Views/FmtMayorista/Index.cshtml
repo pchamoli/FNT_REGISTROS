@@ -1,0 +1,33 @@
+﻿@model MERCADOS.Web.Models.FormatoPrincipalModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<table class="table">
+@foreach (var nodo in Model.Cabecera)
+{
+    <tr>
+        <td style="font-weight: bold">Código de Formato:</td>
+        <td>@Html.DisplayFor(modelCab => nodo.id_formato)</td>
+        <td>&nbsp;</td>
+        <td style="font-weight: bold">Fecha de Formato:</td>
+        <td>@Html.DisplayFor(modelCab => nodo.fecha_formato)</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold">Formato:</td>
+        <td>@Html.DisplayFor(modelCab => nodo.nom_formato)</td>
+        <td>&nbsp;</td>
+        <td style="font-weight: bold">Mercado:</td>
+        <td>@Html.DisplayFor(modelCab => nodo.nom_mercado)</td>
+    </tr>
+}
+</table>
+<br />
+<p>
+    <button type="button" class="btn btn-primary"> @Html.ActionLink("Nuevo Registro", "Create", new { formatoID = ViewBag.id_formato, instanciaID = ViewBag.id_instancia }, new { Style = "color:White" })</button>
+</p>
+<br />
+@Html.Partial("Items", Model.Detalle)

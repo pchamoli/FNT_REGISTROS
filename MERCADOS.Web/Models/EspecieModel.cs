@@ -38,6 +38,12 @@ namespace MERCADOS.Web.Models
 
         public string estado_especie { get; set; }
 
+        [Display(Name = "Clase especie")]
+        public int? clase_especie { get; set; }
+
+        [Display(Name = "Nombre científico")]
+        public string nombre_cientifico { get; set; }
+
         [Display(Name = "Estado")]
         [NotMapped]
         public bool EsActivo
@@ -57,6 +63,9 @@ namespace MERCADOS.Web.Models
         [Required]
         [Display(Name = "Nombre de especie")]
         public string nom_especie { get; set; }
+
+        [Display(Name = "Nombre científico")]
+        public string nombre_cientifico { get; set; }
 
         [Display(Name = "Usuario modificación")]
         public string ult_usuario { get; set; }

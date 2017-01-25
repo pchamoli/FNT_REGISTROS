@@ -22,7 +22,7 @@ namespace MERCADOS.Web.Models
 
         [Required(ErrorMessage = "Nombre de sección es requerido")]
         [Display(Name = "Nombre sección")]
-        [Range(1, int.MaxValue, ErrorMessage = "Seleccione sección válida")]
+        [Range(1, int.MaxValue, ErrorMessage = "Seleccione una sección válida")]
         public int id_seccion { get; set; }
 
         [Required(ErrorMessage = "Nombre de campo es requerido")]

@@ -51,5 +51,21 @@ namespace MERCADOS.Web.Models
 
         public System.Data.Entity.DbSet<MERCADOS.Web.Models.CampoViewModel> CampoViewModels { get; set; }
 
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.MercadoModel> MercadoModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.MercadoViewModel> MercadoViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.InstanciaModel> InstanciaModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.InstanciaViewModel> InstanciaViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.FmtMayoristaModel> FmtMayoristaModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.FmtMayoristaViewModel> FmtMayoristaViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.FmtMinoristaModel> FmtMinoristaModels { get; set; }
+
+        public System.Data.Entity.DbSet<MERCADOS.Web.Models.FmtMinoristaViewModel> FmtMinoristaViewModels { get; set; }
+
     }
 }

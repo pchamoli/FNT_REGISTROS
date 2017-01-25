@@ -1,0 +1,122 @@
+﻿@model MERCADOS.Web.Models.FmtMinoristaViewModel
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar item de instancia de formato</h2>
+
+<h3>Eliminación de registro</h3>
+<div>
+    <h4>¿Está seguro que desea eliminar este item?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_especie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_especie)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_estado)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_presentacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_presentacion)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.puesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.puesto)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_unidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_unidad)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.nom_lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_lugar)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.tamanio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tamanio)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.precio_min)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_min)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.precio_max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_max)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observaciones)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_usuario)
+        </dd>
+
+        <dt style="text-align: left;">
+            @Html.DisplayNameFor(model => model.ult_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ult_fecha)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index", new { formatoID = Model.id_formato, instanciaID = Model.id_instancia })
+        </div>
+    }
+</div>

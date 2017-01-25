@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Ministerio de la Producci&oacute;n - Sistema de Mercados";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css">
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/comun.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/formularios/Comun.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/Error.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/loader.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/sweetalert.css">
-    <link id="page_favicon" type="image/x-icon" rel="icon" href="~/assets/favicon.ico">
+    <!--<link rel="stylesheet" href="/vendor/bootstrap-combobox/css/bootstrap-combobox.css">-->
+    <!--<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />-->
+    <link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <!--<script src="/vendor/bootstrap-combobox/js/bootstrap-combobox.js"></script>-->
     <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
@@ -41,9 +45,15 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                        <li><a href="n-formato.html">Registro <span class="sr-only"></span></a></li>
-                        <li><a href="listado.html">Listado <span class="sr-only"></span></a></li>
-                        <li><a href="#">Reportes <span class="sr-only"></span></a></li>
+                        <li>@Html.ActionLink("Registro", "Create", "Instancia")</li>
+                        <li>@Html.ActionLink("Listado", "Index", "Instancia")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://localhost/reportserver?/ReporteMayoristas/Mayoristas&rs:Command=Render">Mercado Mayorista</a></li>
+                                <li><a href="http://localhost/reportserver?/ReporteMinoristas/Minoristas&rs:Command=Render">Mercado Minorista</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración <span class="caret"></span></a>
                             <ul class="dropdown-menu">
