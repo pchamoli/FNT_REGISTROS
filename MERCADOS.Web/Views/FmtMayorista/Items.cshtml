@@ -1,81 +1,83 @@
 ﻿@model IEnumerable<MERCADOS.Web.Models.FmtMayoristaViewModel>
-
-<table class="table">
-    <tr class="cabecera">
-        <th>
-            Nombre de especie
-        </th>
-        <th>
-            Volumen
-        </th>
-        <th>
-            Cantidad
-        </th>
-        <th>
-            Unidad
-        </th>
-        <th>
-            Procedencia
-        </th>
-        <th>
-            Precio mín.
-        </th>
-        <th>
-            Precio máx.
-        </th>
-        <th>
-            Presentación
-        </th>
-        <th>
-            Estado
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom_especie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.volumen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom_unidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom_lugar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio_min)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio_max)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom_presentacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom_estado)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id_registro, formatoID = ViewBag.id_formato, instanciaID = ViewBag.id_instancia }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.id_registro }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.id_registro })
-            </td>
-        </tr>
-    }
-</table>
+        <table class="table table-striped table-hover table-condensed tabla media">
+            <thead class="cabecera">
+                <tr>
+                    <th>
+                        Nombre de especie
+                    </th>
+                    <th>
+                        Volumen
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Unidad
+                    </th>
+                    <th>
+                        Procedencia
+                    </th>
+                    <th>
+                        Precio mín.
+                    </th>
+                    <th>
+                        Precio máx.
+                    </th>
+                    <th>
+                        Presentación
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom_especie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.volumen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom_unidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom_lugar)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.precio_min)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.precio_max)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom_presentacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom_estado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_registro, formatoID = ViewBag.id_formato, instanciaID = ViewBag.id_instancia }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.id_registro }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id_registro })
+                    </td>
+                </tr>
+            }
+      </table>
 <br />
 Total registros: @ViewBag.TotalCountMayorista
 <br />
 <br />
 <div>
-    @Html.ActionLink("Regresar", "Index", "Instancia")
+    <a href="http://localhost/MERCADOS.Web/Instancia" class="btn btn-primary">Regresar</a>
     &nbsp;|&nbsp;
-    @Html.ActionLink("Confirmar Formato", "Confirmar", "FmtMayorista")
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Confirmar Formato", "Confirmar", "FmtMayorista",null, new { Style = "color:White" })</button>
 </div>

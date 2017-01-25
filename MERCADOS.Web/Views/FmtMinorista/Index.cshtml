@@ -9,29 +9,36 @@
 <table class="table">
     @foreach (var nodo in Model.Cabecera)
     {
-        <tr>
-            <td>Código de Formato:</td>
-            <td>@Html.DisplayFor(modelCab => nodo.id_formato)</td>
-            <td>&nbsp;</td>
-            <td>Fecha de Formato:</td>
-            <td>@Html.DisplayFor(modelCab => nodo.fecha_formato)</td>
-        </tr>
-        <tr>
-            <td>Formato:</td>
-            <td>@Html.DisplayFor(modelCab => nodo.nom_formato)</td>
-            <td>&nbsp;</td>
-            <td>Mercado:</td>
-            <td>@Html.DisplayFor(modelCab => nodo.nom_mercado)</td>
-        </tr>
-    }
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                Código de Formato:
+                @Html.DisplayFor(modelCab => nodo.id_instancia)
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" >
+                Fecha de Formato:
+                @Html.DisplayFor(modelCab => nodo.fecha_formato)
+            </div>
+        </div>
+        <br />
+        <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    Formato:
+                    @Html.DisplayFor(modelCab => nodo.nom_formato)
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    Mercado:
+                    @Html.DisplayFor(modelCab => nodo.nom_mercado)
+                </div>
+        </div>
+     }
 </table>
 <br />
 <p>
-    @Html.ActionLink("Nuevo Registro", "Create", new { formatoID = ViewBag.id_formato, instanciaID = ViewBag.id_instancia })
+    @Html.ActionLink("Nuevo Registro", "Create", new { formatoID = ViewBag.id_formato, instanciaID = ViewBag.id_instancia }, new { @class="btn btn-primary"})
 </p>
 <br />
-<table class="table">
-    <tr class="cabecera">
+<table class="table table-striped table-hover table-condensed tabla small">
+    <thead class="cabecera">
         <th>
             Nombre de especie
         </th>
@@ -57,7 +64,7 @@
             Estado
         </th>
         <th></th>
-    </tr>
+    </thead>
 
     @foreach (var item in Model.Detalle)
     {
@@ -99,7 +106,7 @@ Total registros: @ViewBag.TotalCountMinorista
 <br />
 <br />
 <div>
-    @Html.ActionLink("Regresar", "Index", "Instancia")
-    &nbsp;|&nbsp;
-    @Html.ActionLink("Confirmar Formato", "Confirmar", "FmtMinorista")
+    <a class="btn btn-default" href="./Instancia">Regresar</a>
+    @*@Html.ActionLink("Regresar", null, "Instancia", new { @class = "btn btn-default"})*@
+    @Html.ActionLink("Confirmar Formato", "Confirmar", "FmtMinorista", new { @class = "btn btn-primary" })
 </div>
